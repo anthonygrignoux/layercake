@@ -7,8 +7,8 @@ module.exports = {
     },
     inte: {
         expand: true,
-        flatten: flatten,
+        flatten: true,
         src: 'assets/css/*.css',
         dest: 'assets/css/'
     }
-};
+};&
