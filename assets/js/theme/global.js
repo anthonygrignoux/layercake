@@ -1,10 +1,10 @@
-if (typeof teq == "undefined" || !teq) {
-    var teq = {};
+if (typeof cook == "undefined" || !cook) {
+    var cook = {};
 }
-if (typeof teq.Maboumine == "undefined" || !teq.Maboumine) {
-    teq.Maboumine = {};
+if (typeof cook.Muffin == "undefined" || !cook.Muffin) {
+    cook.Muffin = {};
 }
-teq.Maboumine.Global = function() {
+cook.Muffin.Global = function() {
     this.init();
 };
 
@@ -13,7 +13,7 @@ teq.Maboumine.Global = function() {
 // ------------------------------------------------------------------------------------------------
 
 // Prototype
-teq.Maboumine.Global.prototype = {
+cook.Muffin.Global.prototype = {
 
     width_window: null,
     elFaq: jQuery('.faq-item'),
@@ -256,4 +256,4 @@ teq.Maboumine.Global.prototype = {
 // ------------------------------------------------------------------------------------------------
 
 // Run instance
-new teq.Maboumine.Global();
+new cook.Muffin.Global();
