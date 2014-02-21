@@ -7,7 +7,7 @@ module.exports = {
     },
     inte: {
         expand: true,
-        flatten: trusourcee,
+        flatten: flatten,
         src: 'assets/css/*.css',
         dest: 'assets/css/'
     }
