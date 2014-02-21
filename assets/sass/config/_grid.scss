@@ -1,0 +1,15 @@
+// ==========================================================================
+//  Grid
+// ==========================================================================
+
+@mixin buildGrid($totalColumns: $cols, $prefix: 's') {
+    @for $i from 1 through $totalColumns {
+        .#{$prefix}-#{$i}-#{$totalColumns} {
+            width: ($i * 100 / $totalColumns) + 0%;
+            @if $oldie {
+                *width: ($i * 100 / $totalColumns) + 0%;
+            }
+        }
+    }
+}
+

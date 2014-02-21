@@ -1,0 +1,13 @@
+@charset "UTF-8"; // Forcer charset sur Windows
+
+// ==========================================================================
+//  Tinymce WYSIWYG editor styles
+// ==========================================================================
+
+// CONFIGURATION
+@import "config/defaults";
+@import "config/tools";
+
+// APPLICATION
+@import "custom/base";
+@import "custom/wysiwyg";

@@ -1,0 +1,231 @@
+// ==========================================================================
+//  Mixins & Functions
+// ==========================================================================
+
+// Styles for IE8 & IE7
+// $oldie = true in main-ie.scss
+//      .example {
+//          background: green;
+//          @if $oldie {
+//              background: orange; // <= IE8
+//              *background: red;   // <= IE7
+//          }
+//      }
+$oldie: false !default;
+
+
+// Inline block
+@mixin tq-inline-block {
+    display: inline-block;
+    @if $oldie {
+        *display: inline;
+        *zoom: 1;
+    }
+}
+
+
+// Image replacement
+@mixin tq-ir {
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+
+// Box-sizing
+@mixin tq-boxsizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    @if $oldie {
+        *behavior: url('assets/js/libs/boxsizing.htc');
+        *zoom: 1;
+    }
+}
+
+
+// Clearfix
+@mixin tq-clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+
+    @if $oldie {
+        *zoom: 1;
+    }
+}
+
+
+// Cross-browser opacity
+@mixin tq-opacity($opacity) {
+    @if $oldie {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity + ")";
+        *filter: alpha(opacity=$opacity);
+    }
+    opacity: $opacity / 100;
+}
+
+
+// Calculate font size in ems
+@function tq-em($target, $context: 16) {
+    @return ($target / $context) * 1em;
+}
+
+// Calculate widths in %
+@function tq-percent($target, $context: 980) {
+    @return percentage($target / $context);
+}
+
+// Calculate font size in rems
+@mixin tq-rem($target, $context: 16) {
+    @if $oldie {
+        font-size: $target * 1px;
+    } @else {
+        font-size: ($target / $context) * 1em;
+    }
+}
+
+// Utiliser les media queries avec possibilité de générer un CSS aplati pour ie7 + ie8
+$small:  30em !default; // ≈ 480px
+$medium: 48em !default; // ≈ 768px
+$large:  60em !default; // ≈ 960px
+$wide:   75em !default; // ≈ 1200px
+
+$max-desktop: $large !default;
+$media-queries: true !default; // true by default
+
+@mixin tq-breakpoint($min-width:false, $max-width: false, $prefix: false) {
+    @if $media-queries {
+        @if $min-width {
+            @media all and (min-width: $min-width) {
+                @if $max-width {
+                    @media (max-width: $max-width) {
+                        @if $prefix {
+                            #{"." + $prefix} {
+                                @content;
+                            }
+                        } @else {
+                            @content;
+                        }
+                    }
+                } @else {
+                    @if $prefix {
+                        #{"." + $prefix} {
+                            @content;
+                        }
+                    } @else {
+                        @content;
+                    }
+                }
+            }
+        } @else if $max-width {
+            @media all and (max-width: $max-width) {
+                @if $prefix {
+                    #{"." + $prefix} {
+                        @content;
+                    }
+                } @else {
+                    @content;
+                }
+            }
+        }
+    }
+    @else if $min-width and $min-width <= $max-desktop and (not $max-width or $max-width and $max-width >= $max-desktop) {
+        @content;
+    }
+}
+// Pour écrans retina/hd
+// http://wiki.tequilarapido.net/w/SASS#Images_de_fond_pour_.C3.A9crans_Retina.2FHD
+@mixin tq-retina($file: false, $type: "png") {
+    $image:     #{$file + "." + $type};
+    $image2x:   #{$file + "_2x." + $type};
+
+    @if $media-queries {
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (min-resolution: 144dpi) {
+        // si images on utilise la version @2x pour hautes résolutions, et on fixe la taille à celle de l'image normale
+            @if $file {
+                background-image: image-url($image2x);
+                background-size:  image-width($image) image-height($image);
+            }
+
+            @content;
+        }
+    }
+}
+
+// ==========================================================================
+// Helpers & Objects
+// ==========================================================================
+
+// Automatic hyphens for justified text
+%auto-hyphens {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
+// Avoid long text breaking out of containers
+%prevent-text-breakouts {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+// Image replacement
+%ir {
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+// hidden
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    &.focusable:active,
+    &.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+}
+.invisible {
+    visibility: hidden;
+}
+// Clearfix
+.clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    @if $oldie {
+        *zoom: 1;
+    }
+}

@@ -1,0 +1,134 @@
+/* ==========================================================================
+    Print styles
+   ========================================================================== */
+@media print {
+
+/* ==============================
+    Boilerplate
+   ============================== */
+
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow:none !important;
+        text-shadow: none !important;
+    }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+    img {
+        max-width: 100% !important;
+    }
+    @page {
+        margin: 0.5cm;
+    }
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+
+/* ==============================
+    Tequila
+   ============================== */
+    .global {
+        max-width: 90% !important;
+        margin: 0 auto;
+    }
+    .header .alert,
+    .header .toplinks,
+    .header .nav,
+    .pagination,
+    .footer {
+        display: none !important;
+    }
+    blockquote {
+        border: solid #000;
+        border-width: 0 0 0 5px;
+        padding: 10px;
+    }
+    .teq-container {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 auto !important;
+    }
+    .teq-col {
+        float: none !important;
+        width: auto !important;
+        padding: 0 !important;
+        & + .teq-col {
+            margin-top: 20px;
+        }
+    }
+    .l-1-stone .mod-content,
+    .l-1-stone .editor {
+        width: auto !important;
+    }
+    img {
+        max-width: 150mm !important;
+        .mod--slider-hp & {
+            max-width: 100% !important;
+        }
+    }
+    .teq-4-12 .photos-list > .it-illus {
+        height: auto;
+        line-height: auto;
+        width: auto;
+    }
+    .mod.bg-grey,
+    .mod.bg-blue-1,
+    .mosaic.bg-blue-1 .mod.it-content {
+        padding: 0;
+    }
+    // mosaic
+    .mod--mosaic-hp .teq-row,
+    .mod--mosaic-hp .content--big .mosaic,
+    .mod--mosaic-hp .content--medium .mosaic,
+    .mod--mosaic-hp .content--small .it-illus,
+    .mod--mosaic-hp .content--small .mosaic {
+        height: auto !important;
+    }
+    .mod--mosaic-hp .it-content {
+        position: relative;
+    }
+    .mod--mosaic-hp .content--big .it-illus, 
+    .mod--mosaic-hp .content--medium .it-illus {
+        height: auto ! important;
+    }
+    .mosaic-list {
+        height: auto !important;
+    }
+    .mod--newscenter .article, 
+    .mod--newscenter .mosaic {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        float: none ! important;
+        width: auto !important;
+    }
+    .it-illus .loader,
+    .it-illus .view {
+        display: none;
+    }
+}
