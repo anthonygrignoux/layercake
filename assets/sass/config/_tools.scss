@@ -15,7 +15,7 @@ $oldie: false !default;
 
 
 // Inline block
-@mixin tq-inline-block {
+@mixin cake-inline-block {
     display: inline-block;
     @if $oldie {
         *display: inline;
@@ -25,7 +25,7 @@ $oldie: false !default;
 
 
 // Image replacement
-@mixin tq-ir {
+@mixin cake-ir {
     border: 0;
     font: 0/0 a;
     text-shadow: none;
@@ -34,7 +34,7 @@ $oldie: false !default;
 
 
 // Box-sizing
-@mixin tq-boxsizing {
+@mixin cake-boxsizing {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -46,7 +46,7 @@ $oldie: false !default;
 
 
 // Clearfix
-@mixin tq-clearfix {
+@mixin cake-clearfix {
     &:before,
     &:after {
         content: " ";
@@ -63,7 +63,7 @@ $oldie: false !default;
 
 
 // Cross-browser opacity
-@mixin tq-opacity($opacity) {
+@mixin cake-opacity($opacity) {
     @if $oldie {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity + ")";
         *filter: alpha(opacity=$opacity);
@@ -73,17 +73,17 @@ $oldie: false !default;
 
 
 // Calculate font size in ems
-@function tq-em($target, $context: 16) {
+@function cake-em($target, $context: 16) {
     @return ($target / $context) * 1em;
 }
 
 // Calculate widths in %
-@function tq-percent($target, $context: 980) {
+@function cake-percent($target, $context: 980) {
     @return percentage($target / $context);
 }
 
 // Calculate font size in rems
-@mixin tq-rem($target, $context: 16) {
+@mixin cake-rem($target, $context: 16) {
     @if $oldie {
         font-size: $target * 1px;
     } @else {
@@ -92,15 +92,15 @@ $oldie: false !default;
 }
 
 // Utiliser les media queries avec possibilité de générer un CSS aplati pour ie7 + ie8
-$small:  30em !default; // ≈ 480px
-$medium: 48em !default; // ≈ 768px
-$large:  60em !default; // ≈ 960px
-$wide:   75em !default; // ≈ 1200px
+$small:  30em !default; // ? 480px
+$medium: 48em !default; // ? 768px
+$large:  60em !default; // ? 960px
+$wide:   75em !default; // ? 1200px
 
 $max-desktop: $large !default;
 $media-queries: true !default; // true by default
 
-@mixin tq-breakpoint($min-width:false, $max-width: false, $prefix: false) {
+@mixin cake-breakpoint($min-width:false, $max-width: false, $prefix: false) {
     @if $media-queries {
         @if $min-width {
             @media all and (min-width: $min-width) {
@@ -142,7 +142,7 @@ $media-queries: true !default; // true by default
 }
 // Pour écrans retina/hd
 // http://wiki.tequilarapido.net/w/SASS#Images_de_fond_pour_.C3.A9crans_Retina.2FHD
-@mixin tq-retina($file: false, $type: "png") {
+@mixin cake-retina($file: false, $type: "png") {
     $image:     #{$file + "." + $type};
     $image2x:   #{$file + "_2x." + $type};
 
@@ -172,6 +172,8 @@ $media-queries: true !default; // true by default
     -o-hyphens: auto;
     hyphens: auto;
 }
+
+
 // Avoid long text breaking out of containers
 %prevent-text-breakouts {
     -ms-word-break: break-all;
@@ -181,13 +183,26 @@ $media-queries: true !default; // true by default
     -moz-hyphens: auto;
     hyphens: auto;
 }
+
+
+// Inline-block
+%inline-block {
+    @include cake-inline-block;
+}
+
 // Image replacement
 %ir {
-    border: 0;
-    font: 0/0 a;
-    text-shadow: none;
-    color: transparent;
+    @include cake-ir;
 }
+
+
+// pseudo-elements styled as bullets, add width, height, background, and eventually position
+%pseudo {
+    @extend %inline-block;
+    content: ' ';
+}
+
+
 // hidden
 .hidden {
     display: none;
@@ -215,6 +230,8 @@ $media-queries: true !default; // true by default
 .invisible {
     visibility: hidden;
 }
+
+
 // Clearfix
 .clearfix {
     &:before,

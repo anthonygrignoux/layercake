@@ -66,16 +66,16 @@
         border-width: 0 0 0 5px;
         padding: 10px;
     }
-    .teq-container {
+    .cake-container {
         width: auto !important;
         max-width: none !important;
         margin: 0 auto !important;
     }
-    .teq-col {
+    .cake-col {
         float: none !important;
         width: auto !important;
         padding: 0 !important;
-        & + .teq-col {
+        & + .cake-col {
             margin-top: 20px;
         }
     }
@@ -89,7 +89,7 @@
             max-width: 100% !important;
         }
     }
-    .teq-4-12 .photos-list > .it-illus {
+    .cake-4-12 .photos-list > .it-illus {
         height: auto;
         line-height: auto;
         width: auto;
@@ -100,7 +100,7 @@
         padding: 0;
     }
     // mosaic
-    .mod--mosaic-hp .teq-row,
+    .mod--mosaic-hp .cake-row,
     .mod--mosaic-hp .content--big .mosaic,
     .mod--mosaic-hp .content--medium .mosaic,
     .mod--mosaic-hp .content--small .it-illus,

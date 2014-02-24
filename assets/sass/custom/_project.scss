@@ -1,14 +1,57 @@
 // ==========================================================================
+//  Structure and z-index layering
+// ==========================================================================
+
+#global {
+    position: relative;
+    z-index: 1;
+}
+#header-container,
+#nav,
+#main-container,
+#footer-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative
+}
+#header,
+#nav,
+#main,
+#footer {
+    width: auto;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    @include cake-breakpoint($large){
+        width: 1190px;
+    }
+}
+#nav {
+    z-index: 4;
+}
+#main-container {
+    z-index: 2;
+}
+#main {
+
+}
+#footer-container,
+#header-container {
+    z-index: 6;
+}
+
+// ==========================================================================
 //  Layouts
 // ==========================================================================
 
 .l-container,
 .l-row,
 .l-col {
-    @include teq-boxsizing;
+    @include cake-boxsizing;
 }
 .l-row {
-    @include teq-clearfix;
+    @include cake-clearfix;
 }
 .l-container {
     max-width: $container;
