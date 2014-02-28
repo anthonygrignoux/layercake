@@ -4,10 +4,6 @@ module.exports = {
     },
     sass: {
         files: ['**/*.scss'],
-        tasks: ['compass:inte']
-    },
-    css: {
-        files: ['assets/css/**/*.css'],
-        tasks: ['autoprefixer']
+        tasks: ['css_inte']
     }
 };

@@ -26,23 +26,28 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Load custom tasks
-    grunt.loadTasks('tasks');
+    grunt.loadTasks('grunt-tasks');
 
     // Register task aliases
-    grunt.registerTask('default', ['browser_sync','watch']);
-    grunt.registerTask('js', ['concat:theme', 'clean:preUglify', 'uglify:theme', 'clean:postUglify']);
-    grunt.registerTask('css_all', ['compass','autoprefixer']);
-    grunt.registerTask('css_app', ['compass:app','compass:inte_clean','autoprefixer']);
-    grunt.registerTask('css_inte', ['compass:inte','autoprefixer:inte']);
-    grunt.registerTask('img', ['imagemin']);
+    grunt.registerTask('default', [
+        'browser_sync','watch'
+    ]);
+    grunt.registerTask('js', [
+        'concat:theme', 'clean:preUglify', 'uglify:theme', 'clean:postUglify'
+    ]);
+    grunt.registerTask('css_all', [
+        'compass','autoprefixer'
+    ]);
+    grunt.registerTask('css_dev', [
+        'compass:dev','compass:clean','autoprefixer'
+    ]);
+    grunt.registerTask('css_inte', [
+        'compass:inte','autoprefixer:css_inte'
+    ]);
+    grunt.registerTask('img', [
+        'imagemin'
+    ]);
     grunt.registerTask('theme', [
-        'concat:theme',
-        'clean:preUglify',
-        'uglify:theme',
-        'clean:postUglify',
-        'compass:app',
-        'compass:inte_clean',
-        'autoprefixer',
-        'imagemin:theme'
+        'concat:theme', 'clean:preUglify', 'uglify:theme', 'clean:postUglify', 'compass:clean', 'compass:dev', 'autoprefixer', 'imagemin:theme'
     ]);
 };

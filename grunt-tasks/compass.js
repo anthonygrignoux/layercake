@@ -15,7 +15,7 @@ module.exports = {
             debugInfo:      true
         }
     },
-    inte_clean: {
+    clean: {
         options: {
             cssDir:         'assets/css',
             sassDir:        'assets/sass',
@@ -25,7 +25,7 @@ module.exports = {
             outputStyle:    'expanded'
         }
     },
-    app: {
+    dev: {
         options: {
             cssDir:         '../../app/wp-content/themes/eramet/assets/css',
             sassDir:        'assets/sass',

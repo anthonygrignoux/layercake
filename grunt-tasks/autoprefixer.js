@@ -1,14 +1,14 @@
 module.exports = {
-    app: {
+    css_dev: {
         expand: true,
         flatten: true,
-        src: 'assets/css/*.css',
-        dest: '../../app/wp-content/themes/eramet/assets/css/'
+        src: 'your_app/css/*.css',
+        dest: 'your_app/css/'
     },
-    inte: {
+    css_inte: {
         expand: true,
         flatten: true,
         src: 'assets/css/*.css',
         dest: 'assets/css/'
     }
-};&
+};
